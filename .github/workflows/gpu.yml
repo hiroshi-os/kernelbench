@@ -1,0 +1,18 @@
+name: GPU experiment (manual, self-hosted)
+on: workflow_dispatch
+jobs:
+  gpu:
+    # Runner must have Linux, an NVIDIA CUDA GPU, compatible driver, and Python.
+    # Do not expose this self-hosted runner to untrusted pull requests.
+    runs-on: [self-hosted, linux, x64, cuda]
+    steps:
+      - uses: actions/checkout@v4
+      - run: python -m venv .venv
+      - run: .venv/bin/pip install -e '.[gpu,test]'
+      - run: .venv/bin/pytest -q
+      - run: .venv/bin/kernelbench --shape 1x128 --shape 128x781 --shape 1024x4096 --dtype float32 --output reports/gpu-float32.json
+      - run: .venv/bin/kernelbench --shape 1x128 --shape 128x781 --shape 1024x4096 --dtype float16 --output reports/gpu-float16.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: gpu-experiment
+          path: reports/gpu-*.json
