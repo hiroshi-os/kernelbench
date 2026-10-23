@@ -13,8 +13,9 @@ This repository was developed on Windows without a supported CUDA device.
 validate the reference expressions, API contracts, statistical reporting, and
 the report's separation of CPU validation from GPU measurements. GPU tests skip
 explicitly on unsupported machines. There are no measured GPU speedups yet.
-See [reports/local-validation.json](reports/local-validation.json) for actual
-local reference checks. This is an implemented experiment harness awaiting GPU
+Local reference validation can be recorded with the CPU command below; a
+`reports/local-validation.json` artifact is added only after actual execution.
+This is an implemented experiment harness awaiting GPU
 validation, not a claim of optimized performance.
 
 ## Install and CPU checks
