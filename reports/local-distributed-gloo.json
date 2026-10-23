@@ -1,0 +1,185 @@
+{
+  "schema_version": 1,
+  "status": "distributed_experiment_passed",
+  "created_at": "2026-10-23T17:50:33.647838+00:00",
+  "git_commit": "7e6c7b7e03a6e46f1720277c3e0447c4b57fcc75",
+  "git_dirty": true,
+  "python": "3.12.5",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "cpu_processor": "AMD64 Family 25 Model 80 Stepping 0, AuthenticAMD",
+  "logical_cpu_count": 12,
+  "torch": "2.14.1+cpu",
+  "cuda_runtime": null,
+  "cuda_driver_nvidia_smi": null,
+  "cuda_device_count": 0,
+  "devices": [],
+  "backend": "gloo",
+  "device_type": "cpu",
+  "world_size": 2,
+  "seed": 17,
+  "timeout_seconds": 30,
+  "communication_warmup": 3,
+  "timing_method": "synchronized_host_wall_time_slowest_rank_per_sample",
+  "communication": {
+    "correctness": "passed",
+    "max_abs_error": 0.0,
+    "elements": 65536,
+    "bytes_per_rank": 262144,
+    "dtype": "torch.float32",
+    "samples_ms": [
+      0.6403999868780375,
+      0.5344999954104424,
+      0.520500005222857,
+      0.5388000281527638,
+      0.6261999951675534,
+      0.5428000004030764,
+      17.43680000072345,
+      0.8160999859683216,
+      0.5734000005759299,
+      0.6807000027038157
+    ],
+    "latency": {
+      "samples": 10,
+      "p10_ms": 0.5394299805629998,
+      "median_ms": 0.6027000199537724,
+      "p90_ms": 2.72783000255003
+    }
+  },
+  "training": {
+    "gradient_equivalence": "passed",
+    "parameter_equivalence": "passed",
+    "global_mean_loss_equivalence": "passed",
+    "optimizer": "SGD",
+    "learning_rate": 0.05,
+    "steps": 5,
+    "batch_per_rank": 8,
+    "dtype": "torch.float32",
+    "max_gradient_abs_error": 2.9802322387695312e-08,
+    "max_parameter_abs_error": 1.862645149230957e-09,
+    "parameter_update_max_abs": 0.08937901258468628,
+    "global_mean_losses": [
+      1.4286630153656006,
+      1.4014811515808105,
+      1.3771324157714844,
+      1.3551599979400635,
+      1.3351943492889404
+    ],
+    "samples_ms": [
+      1.2002000003121793,
+      1.7143000150099397,
+      1.3345000334084034,
+      1.7048000008799136,
+      1.5070000081323087
+    ],
+    "latency": {
+      "samples": 5,
+      "p10_ms": 1.2539600138552487,
+      "median_ms": 1.5070000081323087,
+      "p90_ms": 1.7156600253656507
+    }
+  },
+  "workers": [
+    {
+      "rank": 0,
+      "device": "cpu",
+      "hostname": "Cookiemachine",
+      "communication": {
+        "correctness": "passed",
+        "max_abs_error": 0.0,
+        "elements": 65536,
+        "bytes_per_rank": 262144,
+        "dtype": "torch.float32",
+        "samples_ms": [
+          0.6403999868780375,
+          0.5344999954104424,
+          0.520500005222857,
+          0.5388000281527638,
+          0.6261999951675534,
+          0.5428000004030764,
+          17.43680000072345,
+          0.8160999859683216,
+          0.5734000005759299,
+          0.6807000027038157
+        ]
+      },
+      "training": {
+        "gradient_equivalence": "passed",
+        "parameter_equivalence": "passed",
+        "global_mean_loss_equivalence": "passed",
+        "optimizer": "SGD",
+        "learning_rate": 0.05,
+        "steps": 5,
+        "batch_per_rank": 8,
+        "dtype": "torch.float32",
+        "max_gradient_abs_error": 2.9802322387695312e-08,
+        "max_parameter_abs_error": 1.862645149230957e-09,
+        "parameter_update_max_abs": 0.08937901258468628,
+        "global_mean_losses": [
+          1.4286630153656006,
+          1.4014811515808105,
+          1.3771324157714844,
+          1.3551599979400635,
+          1.3351943492889404
+        ],
+        "samples_ms": [
+          1.2002000003121793,
+          1.7143000150099397,
+          1.3345000334084034,
+          1.7048000008799136,
+          1.5070000081323087
+        ]
+      }
+    },
+    {
+      "rank": 1,
+      "device": "cpu",
+      "hostname": "Cookiemachine",
+      "communication": {
+        "correctness": "passed",
+        "max_abs_error": 0.0,
+        "elements": 65536,
+        "bytes_per_rank": 262144,
+        "dtype": "torch.float32",
+        "samples_ms": [
+          0.8510000188834965,
+          0.5430000019259751,
+          0.5394999752752483,
+          0.5388000281527638,
+          0.6303000263869762,
+          0.540599983651191,
+          17.436699999962002,
+          1.0935000027529895,
+          0.5751000135205686,
+          0.6682999664917588
+        ]
+      },
+      "training": {
+        "gradient_equivalence": "passed",
+        "parameter_equivalence": "passed",
+        "global_mean_loss_equivalence": "passed",
+        "optimizer": "SGD",
+        "learning_rate": 0.05,
+        "steps": 5,
+        "batch_per_rank": 8,
+        "dtype": "torch.float32",
+        "max_gradient_abs_error": 2.9802322387695312e-08,
+        "max_parameter_abs_error": 1.862645149230957e-09,
+        "parameter_update_max_abs": 0.08937901258468628,
+        "global_mean_losses": [
+          1.4286630153656006,
+          1.4014811515808105,
+          1.3771324157714844,
+          1.3551599979400635,
+          1.3351943492889404
+        ],
+        "samples_ms": [
+          1.195100019685924,
+          1.7175000393763185,
+          1.3346000341698527,
+          1.712900004349649,
+          0.9929999941959977
+        ]
+      }
+    }
+  ]
+}

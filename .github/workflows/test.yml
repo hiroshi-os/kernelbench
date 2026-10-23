@@ -3,6 +3,7 @@ on: [push, pull_request]
 jobs:
   cpu:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -12,7 +13,11 @@ jobs:
       - run: pip install -e '.[test]'
       - run: pytest -q
       - run: kernelbench --cpu-validate --output reports/ci-cpu.json
+      - run: torchrun --standalone --nnodes=1 --nproc-per-node=2 --max-restarts=0 -m kernelbench.distributed --backend gloo --timeout-seconds 60 --output reports/ci-distributed-gloo.json
       - uses: actions/upload-artifact@v4
         with:
-          name: cpu-reference-validation
-          path: reports/ci-cpu.json
+          name: cpu-reference-and-gloo-training-validation
+          path: |
+            reports/ci-cpu.json
+            reports/ci-distributed-gloo.json
+            reports/ci-distributed-gloo.md

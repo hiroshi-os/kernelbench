@@ -5,11 +5,11 @@ from datetime import datetime, timezone
 import json
 import math
 from pathlib import Path
-import platform
 
 import torch
 
 from .ops import gpu_status, rmsnorm, rmsnorm_reference, softmax, softmax_reference
+from .environment import provenance
 
 
 def quantile(values, fraction):
@@ -56,8 +56,7 @@ def event_time(fn, warmup, samples, inner):
 
 def metadata(seed):
     return {"schema_version": 1, "created_at": datetime.now(timezone.utc).isoformat(),
-            "python": platform.python_version(), "platform": platform.platform(),
-            "torch": torch.__version__, "cuda_runtime": torch.version.cuda, "seed": seed}
+            **provenance(), "seed": seed}
 
 
 def run_cpu_validation(seed=17):

@@ -2,17 +2,22 @@ name: GPU experiment (manual, self-hosted)
 on: workflow_dispatch
 jobs:
   gpu:
+    timeout-minutes: 30
     # Runner must have Linux, an NVIDIA CUDA GPU, compatible driver, and Python.
     # Do not expose this self-hosted runner to untrusted pull requests.
     runs-on: [self-hosted, linux, x64, cuda]
     steps:
       - uses: actions/checkout@v4
-      - run: python -m venv .venv
-      - run: .venv/bin/pip install -e '.[gpu,test]'
-      - run: .venv/bin/pytest -q
+      - run: python -m venv --system-site-packages .venv
+      - run: .venv/bin/pip install --no-deps -e .
+      - run: .venv/bin/pip install pytest
+      - run: .venv/bin/python -c "import torch, triton; assert torch.cuda.is_available()"
+      - run: .venv/bin/python -m pytest tests/test_gpu.py --require-gpu -k 'not bf16' -q -ra --junitxml=reports/gpu-tests.xml
       - run: .venv/bin/kernelbench --shape 1x128 --shape 128x781 --shape 1024x4096 --dtype float32 --output reports/gpu-float32.json
       - run: .venv/bin/kernelbench --shape 1x128 --shape 128x781 --shape 1024x4096 --dtype float16 --output reports/gpu-float16.json
+      - run: .venv/bin/python -m kernelbench.analyze reports/gpu-float32.json > reports/gpu-float32.md
+      - run: .venv/bin/python -m kernelbench.analyze reports/gpu-float16.json > reports/gpu-float16.md
       - uses: actions/upload-artifact@v4
         with:
           name: gpu-experiment
-          path: reports/gpu-*.json
+          path: reports/gpu-*

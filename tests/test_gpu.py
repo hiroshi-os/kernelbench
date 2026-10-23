@@ -7,7 +7,7 @@ pytestmark = pytest.mark.skipif(gpu_status() is not None, reason=gpu_status() or
 
 
 @pytest.mark.parametrize("shape", [(1, 1), (7, 33), (13, 781), (64, 4096)])
-@pytest.mark.parametrize("dtype", [torch.float32, torch.float16, torch.bfloat16])
+@pytest.mark.parametrize("dtype", [torch.float32, torch.float16, torch.bfloat16], ids=["fp32", "fp16", "bf16"])
 @pytest.mark.parametrize("warps", [4, 8])
 def test_kernels(shape, dtype, warps):
     if dtype == torch.bfloat16 and not torch.cuda.is_bf16_supported():
