@@ -7,3 +7,4 @@ build/
 dist/
 reports/*.json
 !reports/local-validation.json
+!reports/validation-environment.json

@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-10-23T15:17:31.259033+00:00",
+  "python": "3.12.5",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "torch": "2.14.1+cpu",
+  "cuda_runtime": null,
+  "seed": 17,
+  "status": "cpu_reference_validation_only",
+  "gpu_status": "not_executed",
+  "gpu_reason": "Triton GPU execution requires Linux in this repository (WSL2 with a supported GPU also works)",
+  "results": [
+    {
+      "shape": [
+        1,
+        1
+      ],
+      "reference_checks": "passed"
+    },
+    {
+      "shape": [
+        7,
+        33
+      ],
+      "reference_checks": "passed"
+    },
+    {
+      "shape": [
+        13,
+        781
+      ],
+      "reference_checks": "passed"
+    },
+    {
+      "shape": [
+        2,
+        4096
+      ],
+      "reference_checks": "passed"
+    }
+  ]
+}
